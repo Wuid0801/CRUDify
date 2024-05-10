@@ -1,10 +1,13 @@
-import "./App.css";
-import Sidebar from "./components/Sidebar";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Routes } from "./route/Routes";
 
 function App() {
   return (
     <>
-      <Sidebar children={320} />
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+
+        <Routes />
+      </ThemeProvider>
     </>
   );
 }

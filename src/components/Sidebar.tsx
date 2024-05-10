@@ -1,28 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SidebarWrapper = styled.div<{ width: number }>`
-  background-color: #E3ECF1;
+interface SidebarWrapperProps {
+  isOpen: boolean;
+  width: number;
+}
+
+const SidebarWrapper = styled.div<SidebarWrapperProps>`
+  background-color: #fff;
   border-right: 4px solid #202020;
   position: fixed;
   top: 0;
-  left: 0;
+  left: ${props => (props.isOpen ? '0' : `-${props.width}px`)}; 
   bottom: 0;
   width: ${props => props.width}px;
-  transition: width 0.4s ease;
+  transition: left 0.4s ease;
   color: #202020;
   z-index: 99;
   overflow-y: auto;
 `;
 
 interface SidebarProps {
+  isOpen: boolean;
   width?: number;
   children?: React.ReactNode;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ width = 280, children }) => {
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, width = 180, children }) => {
   return (
-    <SidebarWrapper width={width}>
+    <SidebarWrapper isOpen={isOpen} width={width}>
       {children}
     </SidebarWrapper>
   );
