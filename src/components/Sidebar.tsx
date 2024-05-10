@@ -2,16 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface SidebarWrapperProps {
-  isOpen: boolean;
+  $isOpen: boolean;
   width: number;
 }
 
 const SidebarWrapper = styled.div<SidebarWrapperProps>`
   background-color: #fff;
-  border-right: 4px solid #202020;
+
   position: fixed;
   top: 0;
-  left: ${props => (props.isOpen ? '0' : `-${props.width}px`)}; 
+  left: ${props => (props.$isOpen ? '0' : `-${props.width}px`)}; 
   bottom: 0;
   width: ${props => props.width}px;
   transition: left 0.4s ease;
@@ -28,7 +28,7 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, width = 180, children }) => {
   return (
-    <SidebarWrapper isOpen={isOpen} width={width}>
+    <SidebarWrapper $isOpen={isOpen} width={width}>
       {children}
     </SidebarWrapper>
   );

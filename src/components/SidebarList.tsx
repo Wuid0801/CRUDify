@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 interface MenuItemProps {
-  selected?: string;
+  $selected?: string;
 }
 
 const StyledMenu = styled.div`
@@ -20,8 +20,8 @@ const StyledMenuItem = styled.div<MenuItemProps>`
   padding: 0.75rem;
   border-radius: 0.375rem;
   background-color: ${(props) =>
-    props.selected === "true" ? "black" : "#fff"};
-  color: ${(props) => (props.selected === "true" ? "white" : "black")};
+    props.$selected === "true" ? "black" : "#fff"};
+  color: ${(props) => (props.$selected === "true" ? "white" : "black")};
   transition: background-color 0.3s ease;
   justify-content: flex-start;
   border: solid 1px #fff;
@@ -41,25 +41,25 @@ function SidebarList() {
   return (
     <StyledMenu>
       <StyledMenuItem
-        selected={selectedItem === "Menu Item 1" ? "true" : "false"}
+        $selected={selectedItem === "Menu Item 1" ? "true" : "false"}
         onClick={() => setSelectedItem("Menu Item 1")}
       >
         Menu Item 1
       </StyledMenuItem>
       <StyledMenuItem
-        selected={selectedItem === "Menu Item 2" ? "true" : "false"}
+        $selected={selectedItem === "Menu Item 2" ? "true" : "false"}
         onClick={() => setSelectedItem("Menu Item 2")}
       >
         Menu Item 2
       </StyledMenuItem>
       <StyledMenuItem
-        selected={selectedItem === "Menu Item 3" ? "true" : "false"}
+        $selected={selectedItem === "Menu Item 3" ? "true" : "false"}
         onClick={() => setSelectedItem("Menu Item 3")}
       >
         Menu Item 3
       </StyledMenuItem>
       <StyledMenuItem
-        selected={selectedItem === "Menu Item 4" ? "true" : "false"}
+        $selected={selectedItem === "Menu Item 4" ? "true" : "false"}
         onClick={() => setSelectedItem("Menu Item 4")}
       >
         Menu Item 4

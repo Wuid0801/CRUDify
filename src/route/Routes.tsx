@@ -6,7 +6,7 @@ import {
   Routes as ReactRouterRoutes,
 } from "react-router-dom";
 
-const SignIn = lazy(() => import("@/pages/Login"));
+const Rain = lazy(() => import("@/pages/Rain"));
 
 export const Routes = () => {
   return (
@@ -15,7 +15,7 @@ export const Routes = () => {
         <ReactRouterRoutes>
             
           <Route element={<Layout />}>
-            <Route path="/" element={<SignIn />} />
+            <Route path="/" element={<Rain />} />
           </Route>
         </ReactRouterRoutes>
       </Suspense>
