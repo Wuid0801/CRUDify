@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 const Rain = lazy(() => import("@/pages/Rain"));
+const Test = lazy(() => import("@/pages/test"));
 
 export const Routes = () => {
   return (
@@ -15,7 +16,8 @@ export const Routes = () => {
         <ReactRouterRoutes>
             
           <Route element={<Layout />}>
-            <Route path="/" element={<Rain />} />
+            <Route path="/" element={<Test/>}/>
+            <Route path="/rain" element={<Rain />} />
           </Route>
         </ReactRouterRoutes>
       </Suspense>
