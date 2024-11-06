@@ -16,7 +16,7 @@ export const WhiteSquare = styled.div`
   position: relative;
 `;
 
-export const CircleContaniner = styled.div`
+export const CircleContainer = styled.div`
   width: 300px;
   height: 300px;
   border-radius: 50%;
@@ -24,12 +24,12 @@ export const CircleContaniner = styled.div`
 `;
 
 export const WhiteSquareHeader = styled.header`
-  height: 20%;
-  background-color: red;
+  height: 10%;
+  background-color: rgba(255, 0, 0, 0.1);
 `;
 
 export const WhiteSquareBody = styled.div`
-  height: 50%;
+  height: 60%;
   display: flex;
   align-items: center;
   margin-left: 40px;
@@ -37,5 +37,20 @@ export const WhiteSquareBody = styled.div`
 
 export const WhiteSquareFooter = styled.footer`
   height: 30%;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.1);
+`;
+
+export const InformationFooterContainer = styled.p`
+  padding: 10px;
+`;
+
+export const InformationContainer = styled.div`
+  margin-left: 40px;
+`
+
+export const InformationHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 `;

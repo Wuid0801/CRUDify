@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
-  CircleContaniner,
+  CircleContainer,
   PageContainer,
   WhiteSquare,
   WhiteSquareBody,
   WhiteSquareFooter,
   WhiteSquareHeader,
+  InformationContainer,
+  InformationHeader,
+  InformationFooterContainer,
 } from "./board.styles";
 
 const city = "Seoul";
@@ -40,15 +43,25 @@ function Test() {
     const fetchWeatherData = async () => {
       try {
         const response = await axios.get(api);
-        console.log(response.data)
+        console.log(response.data);
 
         const initializedData = {
           name: response.data.name,
-          temp: Math.round(response.data.main.temp - 273.15), // 섭씨로 변환
-          description: response.data.weather[0].description,
-          humidity: response.data.main.humidity,
-          windSpeed: (response.data.wind.speed * 3.6).toFixed(2), // m/s를 km/h로 변환
-          pressure: response.data.main.pressure,
+          main: {
+            temp: response.data.main.temp,
+            humidity: response.data.main.humidity,
+            pressure: response.data.main.pressure,
+          },
+          wind: {
+            speed: response.data.wind.speed,
+          },
+          visibility: response.data.visibility,
+          weather: [
+            {
+              description: response.data.weather[0].description,
+              icon: response.data.weather[0].icon,
+            },
+          ],
         };
         setWeatherData(initializedData);
         setLoading(false);
@@ -74,26 +87,31 @@ function Test() {
       <PageContainer>
         <WhiteSquare>
           <WhiteSquareHeader>
-            <h1>날씨 정보</h1>
+            <InformationHeader>날씨 정보</InformationHeader>
           </WhiteSquareHeader>
           <WhiteSquareBody>
-            <CircleContaniner />
-            {weatherData && weatherData.main && weatherData.wind ? (
-              <div>
-                <p>온도: {Math.round(weatherData.main.temp - 273.15)}°C</p>{" "}
-                {/* 섭씨로 변환 */}
-                <p>습도: {weatherData.main.humidity}%</p>
-                <p>풍속: {weatherData.wind.speed} m/s</p>
-                <p>기압: {weatherData.main.pressure} hPa</p>
-                <p>가시거리: {weatherData.visibility / 1000} km</p>{" "}
-                {/* 가시거리 km로 변환 */}
-              </div>
-            ) : (
-              <p>Loading weather data...</p>
-            )}
+            <CircleContainer />
+            <InformationContainer>
+              {weatherData && weatherData.main ? (
+                <>
+                  <p>위치: {weatherData.name}</p>
+                  <p>
+                    온도: {Math.round(weatherData.main.temp - 273.15)}°C
+                  </p>{" "}
+                  {/* 섭씨로 변환 */}
+                  <p>습도: {weatherData.main.humidity}%</p>
+                  <p>풍속: {weatherData.wind.speed} m/s</p>
+                  <p>기압: {weatherData.main.pressure} hPa</p>
+                  <p>가시거리: {weatherData.visibility / 1000} km</p>{" "}
+                  {/* 가시거리 km로 변환 */}
+                </>
+              ) : (
+                <p>Loading weather data...</p>
+              )}
+            </InformationContainer>
           </WhiteSquareBody>
           <WhiteSquareFooter>
-            <p>매시간 업데이트되는 날씨 정보</p>
+            <InformationFooterContainer>매시간 업데이트되는 날씨 정보</InformationFooterContainer>
           </WhiteSquareFooter>
         </WhiteSquare>
       </PageContainer>
