@@ -42,11 +42,19 @@ export const WhiteSquareFooter = styled.footer`
 
 export const InformationFooterContainer = styled.p`
   padding: 10px;
+  white-space: pre-line; 
+  line-height: 1.5;
 `;
 
 export const InformationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px; 
+  padding: 20px; 
+  border-bottom: 2px solid #ddd; 
   margin-left: 40px;
-`
+`;
 
 export const InformationHeader = styled.div`
   display: flex;

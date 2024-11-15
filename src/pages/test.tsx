@@ -111,7 +111,13 @@ function Test() {
             </InformationContainer>
           </WhiteSquareBody>
           <WhiteSquareFooter>
-            <InformationFooterContainer>매시간 업데이트되는 날씨 정보</InformationFooterContainer>
+            <InformationFooterContainer>
+              맑은 날: "오늘은 화창한 날씨입니다. 자외선 차단제를 꼭 바르세요!☀️" 
+              추운 날: "기온이 많이 내려갔습니다. 외출 시 따뜻한 옷을입으세요! 🧥" 
+              바람이 강한 날: "강풍이 예상됩니다. 야외 활동 시주의하세요! 🌬" 
+              습한 날: "습도가 높습니다. 실내 환기를 자주시켜주세요! 🏡" 
+              더운 날: "더운 날씨엔 수분 섭취를 충분히 하고,시원한 곳에서 휴식하세요! 💧"
+            </InformationFooterContainer>
           </WhiteSquareFooter>
         </WhiteSquare>
       </PageContainer>
