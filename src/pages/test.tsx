@@ -32,6 +32,7 @@ function Test() {
     visibility: 0,
     weather: [
       {
+        main:"",
         description: "",
         icon: "",
       },
@@ -58,6 +59,7 @@ function Test() {
           visibility: response.data.visibility,
           weather: [
             {
+              main: response.data.weather[0].main,
               description: response.data.weather[0].description,
               icon: response.data.weather[0].icon,
             },
@@ -112,11 +114,31 @@ function Test() {
           </WhiteSquareBody>
           <WhiteSquareFooter>
             <InformationFooterContainer>
-              맑은 날: "오늘은 화창한 날씨입니다. 자외선 차단제를 꼭 바르세요!☀️" 
-              추운 날: "기온이 많이 내려갔습니다. 외출 시 따뜻한 옷을입으세요! 🧥" 
-              바람이 강한 날: "강풍이 예상됩니다. 야외 활동 시주의하세요! 🌬" 
-              습한 날: "습도가 높습니다. 실내 환기를 자주시켜주세요! 🏡" 
-              더운 날: "더운 날씨엔 수분 섭취를 충분히 하고,시원한 곳에서 휴식하세요! 💧"
+              <p>
+                {/* 날씨 상태에 따라 메시지를 출력 */}
+                {(() => {
+                  const mainWeather = weatherData.weather[0].main;
+                  const description = weatherData.weather[0].description;
+
+                  if (mainWeather === "Clear") {
+                    return `오늘은 맑은 날씨입니다 (${description}). 자외선 차단제를 꼭 바르세요! ☀️`;
+                  } else if (mainWeather === "Rain") {
+                    return `오늘은 비가 오는 날씨입니다 (${description}). 우산을 잊지 마세요! 🌧`;
+                  } else if (mainWeather === "Clouds") {
+                    return `구름이 많은 날씨입니다 (${description}). 가벼운 산책도 좋겠어요! ☁️`;
+                  } else if (mainWeather === "Snow") {
+                    return `눈이 오는 날씨입니다 (${description}). 미끄러지지 않게 조심하세요! ❄️`;
+                  } else if (mainWeather === "Thunderstorm") {
+                    return `천둥번개가 치는 날씨입니다 (${description}). 외출을 피하세요! ⚡`;
+                  } else if (mainWeather === "Drizzle") {
+                    return `이슬비가 내리는 날씨입니다 (${description}). 가벼운 우산을 준비하세요! 🌦`;
+                  } else if (mainWeather === "Mist" || mainWeather === "Fog") {
+                    return `안개가 짙은 날씨입니다 (${description}). 운전 시 주의하세요! 🌫`;
+                  } else {
+                    return `현재 날씨는 ${description}입니다. 날씨 정보를 확인해 주세요! 🌍`;
+                  }
+                })()}
+              </p>
             </InformationFooterContainer>
           </WhiteSquareFooter>
         </WhiteSquare>
