@@ -32,7 +32,7 @@ function Test() {
     visibility: 0,
     weather: [
       {
-        main:"",
+        main: "",
         description: "",
         icon: "",
       },
@@ -41,6 +41,32 @@ function Test() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let watchId;
+
+    if (navigator.geolocation) {
+      // 위치 정보를 정기적으로 얻기
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      watchId = navigator.geolocation.watchPosition(
+        (pos) => {
+          const { latitude, longitude } = pos.coords;
+          console.log(`위도: ${latitude}, 경도: ${longitude}`);
+          // 필요한 경우 상태에 저장
+          // setLatitude(latitude);
+          // setLongitude(longitude);
+        },
+        (err) => {
+          console.error("Geolocation error:", err.message);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0,
+        }
+      );
+    } else {
+      alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.");
+    }
+    
     const fetchWeatherData = async () => {
       try {
         const response = await axios.get(api);
